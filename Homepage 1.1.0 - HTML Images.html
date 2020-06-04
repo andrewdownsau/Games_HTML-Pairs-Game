@@ -1,0 +1,234 @@
+<html lang="en-US">
+	<!-- This is a simple html web page used to go over the various elements of html and how they are correctly implimented in a standard browser -->
+	<head>
+		<title>HomePage Example</title>
+		<meta charset="UTF-8">
+	</head>
+	<body >
+	<div style="text-align:center">
+		<h1 id="PageTitle" style="display:inline-block; padding:4px; border:2px solid darksalmon; color:darksalmon"> Pairs Game HTML Example </h1>
+	</div>
+	<div>
+		<hr>
+		<p>This html page is meant as a small test of the <img> and <picture> tags as well as their associated attributes. This web page will emulate a basic pairs game where the user will have to match the pairs of the cards generated on the table and a timer will be used to mark how long it takes to solve as well as a counter to determine how many turns were required to solve it.</p>
+		<hr>
+	</div>
+	<div style="text-align:center">
+		<button id="start_timer_btn" onclick="pressStartButton()" style="font-size:20px; margin-left:4px; margin-right:4px"> Start </button>
+		<button id="pause_timer_btn" onclick="pressPauseButton()" style="font-size:20px; margin-left:4px; margin-right:4px" disabled="true"> Pause </button>
+		<button id="reset_timer_btn" onclick="pressResetButton()" style="font-size:20px; margin-left:4px; margin-right:4px" disabled="true"> Reset </button>
+	</div>
+	<br>
+	<div id="table_image_div" style="display:block; margin-left: auto; margin-right: auto; border:2px solid grey; max-width:1964px; max-height:910px; width: 100%; height:auto; position:relative">
+		<img id="table_image" src="images/pairs_table.png" title="tableimg" alt="Pairs Table Image"  style=" max-width:1964px; max-height:910px; width: 100%; height:auto; ">
+	</div>
+	<div id="timer_turn_counter_div" style="text-align:center">
+		<pre style="font-size:20px"> Timer: <span id="timer_output">0 seconds</span>		Turn Counter: <span id="counter_output">0 Turns</span>		Pairs Counter: <span id="pairs_output">0 Pairs</span></pre>
+	</div>
+	<br><br>
+	<div id="message_div" style="text-align:center">
+		<p><font size="50"><span id="message"></span></font></p>
+	</div>
+	<script>
+		var output = 0;
+		var timer; 
+		var id_val;
+		var cardspressed = 0;
+		var firstCardNum;
+		var secondCardNum;
+		var firstCardId;
+		var secondCardId;
+		var firstCardTxtId;
+		var secondCardTxtId;
+		var turnNum = 0;
+		var pairsNum = 0;
+		
+		function timerOn(){
+				output++;
+				document.getElementById("timer_output").innerHTML=output + " seconds";
+		}
+		
+		function pressStartButton() {
+			//Game Start Setup Section
+			var i; var j; var k; var img; var img_top_val; var img_left_val; var txt_top_val; var txt_left_val; var index; var number_val; var txt; var txt_size; 
+			var range = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15,16,16,17,17,18,18,19,19,20,20,21,21,22,22,23,23,24,24,25,25];
+			for(k=0; k<2; k++){
+				for(j=0;j<5;j++){
+					for(i=0;i<10;i++){
+						img = document.createElement('img');
+						id_val = j*10+i;
+						img_top_val = 7.5 + 16*j;
+						img_left_val = 12.5 + 6.4*i;
+						
+						if(k == 0){
+							img.src = "images/card_face_down.png";
+							img.id = "fdcard"+id_val;
+							img.style = "position:absolute; top:" + img_top_val + "%; left:" + img_left_val + "% ;width: 5%; height:auto;";
+							img.onclick = pressFDCard;
+						}
+						else if(k == 1){
+							txt_top_val = 12 + 16*j;
+							txt_left_val = 14 + 6.4*i;
+							txt = document.createElement('span');
+							index = Math.floor(Math.random() * range.length);
+							number_val = range[index];
+							range.splice(index,1);
+							txt.innerHTML = number_val;
+							txt.id = "txt_number"+id_val;
+							txt.style = "position:absolute; top:" + txt_top_val + "%; left:" + txt_left_val + "% ;width: 5%; height:auto; font-size: 2vw; visibility: hidden";
+							
+							
+							img.src = "images/card_face_up.png";
+							img.id = "fucard"+id_val;
+							//img.title = number_val;
+							img.style = "position:absolute; top:" + img_top_val + "%; left:" + img_left_val + "% ;width: 5%; height:auto; visibility: hidden";
+							
+						}
+						document.getElementById('table_image_div').insertBefore(img,null);
+						if(k == 1) document.getElementById('table_image_div').insertBefore(txt,null);
+					}
+				}
+			}
+			
+			//Font resize controller
+			document.getElementsByTagName("BODY")[0].onresize = function() {fontController()};
+			function fontController() {
+				if(window.innerWidth > 1964){
+					for(j=0;j<5;j++){
+						for(i=0;i<10;i++){
+							id_val = j*10+i;
+							var txt_num = document.getElementById("txt_number"+id_val);
+							txt_num.style.fontSize = "39.28px";
+						}
+					}
+				}
+				else{
+					for(j=0;j<5;j++){
+						for(i=0;i<10;i++){
+							id_val = j*10+i;
+							var txt_num = document.getElementById("txt_number"+id_val);
+							txt_num.style.fontSize = "2vw";
+						}
+					}
+				}
+			}
+			
+			//Timer section
+			timer = setInterval(timerOn,1000);
+			
+			//Button state changes
+			document.getElementById("start_timer_btn").onclick = pressRestartButton;
+			document.getElementById("start_timer_btn").disabled = true;
+			document.getElementById("pause_timer_btn").disabled = false;
+			document.getElementById("reset_timer_btn").disabled = false;
+		}
+		
+		function pressPauseButton() {
+			clearInterval(timer);
+			document.getElementById("start_timer_btn").disabled = false;
+			document.getElementById("pause_timer_btn").disabled = true;
+			
+			document.getElementById("table_image").src = "images/pairs_table_dark.png";
+			
+			for(j=0;j<5;j++){
+				for(i=0;i<10;i++){
+					id_val = j*10+i;
+					//Archive current visibility state into title attributes
+					document.getElementById("fdcard"+id_val).title = document.getElementById("fdcard"+id_val).style.visibility;
+					document.getElementById("fucard"+id_val).title = document.getElementById("fucard"+id_val).style.visibility;
+					document.getElementById("txt_number"+id_val).title = document.getElementById("txt_number"+id_val).style.visibility;
+					
+					document.getElementById("fdcard"+id_val).style.visibility = "hidden";
+					document.getElementById("fucard"+id_val).style.visibility = "hidden";
+					document.getElementById("txt_number"+id_val).style.visibility = "hidden";
+				}
+			}
+		}
+		
+		function pressRestartButton() {
+			timer = setInterval(timerOn,1000);
+			document.getElementById("start_timer_btn").disabled = true;
+			document.getElementById("pause_timer_btn").disabled = false;
+			
+			document.getElementById("table_image").src = "images/pairs_table.png";
+			
+			for(j=0;j<5;j++){
+				for(i=0;i<10;i++){
+					id_val = j*10+i;
+					document.getElementById("fdcard"+id_val).style.visibility = document.getElementById("fdcard"+id_val).title;
+					document.getElementById("fucard"+id_val).style.visibility = document.getElementById("fucard"+id_val).title;
+					document.getElementById("txt_number"+id_val).style.visibility = document.getElementById("txt_number"+id_val).title;
+				}
+			}
+		}
+		
+		function pressResetButton() {
+			location.reload();
+		}
+		
+		function pressFDCard(){
+			//Function is dependant on whether it is the first press or the second one, and whether the two values match
+			if(cardspressed == 0){
+				//Unhidden face up card and number value
+				id_val = this.id.substring(6,8);
+				firstCardId = document.getElementById("fucard"+id_val);
+				firstCardTxtId = document.getElementById("txt_number"+id_val);
+				firstCardId.style.visibility = "visible";
+				firstCardTxtId.style.visibility = "visible";
+				firstCardNum = firstCardTxtId.innerHTML;
+				cardspressed = 1;
+			}
+			else if(cardspressed == 1){
+				//Unhidden face up card and number value
+				id_val = this.id.substring(6,8);
+				secondCardId = document.getElementById("fucard"+id_val);
+				secondCardTxtId = document.getElementById("txt_number"+id_val);
+				secondCardId.style.visibility = "visible";
+				secondCardTxtId.style.visibility = "visible";
+				secondCardNum = secondCardTxtId.innerHTML;
+				
+				//If the cards do not match, hide both cards after a 2 second delay
+				if(firstCardNum != secondCardNum){
+					setTimeout(function(){
+						firstCardId.style.visibility = "hidden";
+						firstCardTxtId.style.visibility = "hidden";
+						secondCardId.style.visibility = "hidden";
+						secondCardTxtId.style.visibility = "hidden";
+					}, 200); // 2 second delay
+				} 
+				else{
+					pairsNum++;
+					document.getElementById("pairs_output").innerHTML = pairsNum + " Pairs";
+				}
+				cardspressed = 0;
+				turnNum++;
+				document.getElementById("counter_output").innerHTML = turnNum + " Turns";
+				if(pairsNum == 25){
+					document.getElementById("message").innerHTML = "Congrats you did it!";
+					clearInterval(timer);
+					document.getElementById("start_timer_btn").disabled = true;
+					document.getElementById("pause_timer_btn").disabled = true;
+					document.getElementById("reset_timer_btn").disabled = false;
+				}
+				
+			}
+			
+			//alert("Button clicked, id "+id_val);
+		}
+		
+	</script>
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+	</body>
+</html>
