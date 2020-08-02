@@ -1,6 +1,7 @@
 
+/* Title Area */
 #title_area {
-	text-align:center
+	text-align:center;
 }
 
 #title_area h1 {
@@ -12,8 +13,49 @@
 }
 
 
+/* Description Area */
+#description_area {
+	padding: 0px 100px;
+}
 
 
+/* Operational Button */
+button {
+	font-size: 20px; 
+	margin: 0px 4px;
+}
 
 
+/* Game Table Area */
+#table_image_div, #table_image {
+	max-width:1964px; 
+	max-height:910px; 
+	width: 100%; 
+	height:auto;
+}
 
+#table_image_div {
+	display: block; 
+	margin-left: auto; 
+	margin-right: auto; 
+	border: 2px solid grey; 
+	border-radius: 4px;
+	position: relative;
+}
+
+/* Game Timer and Counters*/
+#timer_turn_counter_div {
+	text-align: center;
+	font-size: 20px;
+}
+
+#timer_turn_counter_div ul {
+	list-style-type: none;
+	columns: 3;
+}
+
+/* Game Success and Test Message*/
+#message_div {
+	text-align: center;
+	font-size: 40px;
+}
