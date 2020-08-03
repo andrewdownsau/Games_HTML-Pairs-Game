@@ -46,7 +46,7 @@ function initiate_cards (rows, columns){
 				img_left_val = 10 + (img_width+1)*column;
 				img_top_val = 7.5 + (img_height+1)*row;
 				id_value = row*columns + column;
-				img.style = "position:absolute; top: " + img_top_val + "%; left: " + img_left_val + "% ;width: " + img_width + "%; height:auto;";
+				img.style = "position:absolute; top: " + img_top_val + "%; left: " + img_left_val + "% ;width: " + img_width + "%; height:auto; max-width:100px; max-height:200px;";
 				
 				
 				
@@ -76,7 +76,7 @@ function initiate_cards (rows, columns){
 					if(number_value < 10) txt_left_val = img_left_val + 2.5;
 					else txt_left_val = img_left_val + 1.9;
 					txt_top_val = img_top_val + 5;
-					txt.style = "position:absolute; top:" + txt_top_val + "%; left:" + txt_left_val + "% ;width: 5%; height:auto; font-size: 3vw; visibility: hidden;";
+					txt.style = "position:absolute; top:" + txt_top_val + "%; left:" + txt_left_val + "% ;width: 5%; height:auto; ";
 					
 					
 				}

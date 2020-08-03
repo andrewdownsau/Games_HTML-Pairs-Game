@@ -28,8 +28,8 @@ button {
 
 /* Game Table Area */
 #table_image_div, #table_image {
-	max-width:1964px; 
-	max-height:910px; 
+	max-width:1400px; 
+	max-height:900px; 
 	width: 100%; 
 	height:auto;
 }
@@ -42,6 +42,7 @@ button {
 	border: 2px solid grey; 
 	border-radius: 4px;
 	position: relative;
+	font-size: 3vw;
 }
 
 /* Game Timer and Counters*/
