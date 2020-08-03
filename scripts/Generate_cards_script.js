@@ -3,7 +3,7 @@
 
 //TODO:
 //Currently the function just loads on the page at load, I want to change it so that the function is called on start press
-window.addEventListener("load", initiate_cards(5,10));
+//window.addEventListener("load", initiate_cards(5,10));
 
 function initiate_cards (rows, columns){
 	
