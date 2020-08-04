@@ -20,10 +20,12 @@
 			<hr>
 		</div>
 		
-		<!-- Operational buttons -->
-		<div style="text-align:center">
+		<!-- Operational buttons and number toggle -->
+		<div id="button_toggle_area">
 			<button id="start_pause_btn">Start</button>
-			<button id="reset_timer_btn">Reset</button>
+			<button id="reset_btn" disabled>Reset</button>
+			<label for="number_toggle">Show Numbers</label> 
+			<input type="checkbox" id="number_toggle" disabled>
 		</div><br>
 		
 		<!-- Game Board Area -->
@@ -49,8 +51,9 @@
 		<script src="scripts/Generate_cards_script.js"></script>
 		<script src="scripts/Resizing_format_script.js"></script>
 		<script src="scripts/Game_timer_script.js"></script>
-		<script src="scripts/Start_pause_btn_script.js"></script>
+		<script src="scripts/Button_pressed_script.js"></script>
 		<script src="scripts/Back_card_press_script.js"></script>
+		<script src="scripts/Toggle_numbers_shown_script.js"></script>
 		
 	</body>
 	

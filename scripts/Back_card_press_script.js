@@ -39,6 +39,7 @@ function pressBackCard(){
 		if(cardCounter == 0) {
 			firstCardNumber = img_txt_pressed[cardCounter].innerHTML;
 			cardCounter++;
+			//alert("here");
 		}
 		
 		//Grab second number to match against first
@@ -71,6 +72,7 @@ function pressBackCard(){
 				document.getElementById("message").innerHTML = "Congrats you did it!";
 				clearInterval(timer);
 				start_pause_resume_btn.innerHTML = "Start";
+				reset_btn.disabled = true;
 			}
 		}
 	}
