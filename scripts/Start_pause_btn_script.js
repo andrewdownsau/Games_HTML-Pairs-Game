@@ -12,9 +12,7 @@ function pressStartPauseButton(){
 	//The button value variable determines whether the button functions as a start, pause or resume button
 	var btn_value = button_pressed.innerHTML;
 	
-	//The number of rows and colums are defined here as the start button calls the card generation function
-	var rows = 5;
-	var columns = 10;
+	
 	
 	//Function of Start Button
 	if(btn_value == "Start"){
@@ -25,7 +23,8 @@ function pressStartPauseButton(){
 		timer = setInterval(timerOn,1000);
 		
 		//Start button triggers cards to be generated on game table
-		initiate_cards(rows,columns);
+		initiate_cards();
+		generateCardPressListeners();
 	}
 	
 	if(btn_value == "Pause"){

@@ -5,7 +5,11 @@
 //Currently the function just loads on the page at load, I want to change it so that the function is called on start press
 //window.addEventListener("load", initiate_cards(5,10));
 
-function initiate_cards (rows, columns){
+//The number of rows and colums are defined here as a global variable that many functions in the program use
+var rows = 5;
+var columns = 10;
+
+function initiate_cards(){
 	
 	//Image variables of cards that remain constant
 	var img_width = 7;
@@ -54,6 +58,8 @@ function initiate_cards (rows, columns){
 				if(front_back == 0){
 					img.src = "images/card_back.svg";
 					img.id = "back_card"+id_value;
+					img.style.cursor = "pointer";
+					//img.onclick = pressBackCard;
 					//img.style.visibility = "hidden";
 				}
 				
@@ -67,8 +73,6 @@ function initiate_cards (rows, columns){
 					text_index = Math.floor(Math.random() * number_range.length);
 					number_value = number_range[text_index];
 					number_range.splice(text_index,1); //Removes this value from the range so it can't repeat
-					
-					//if(column == 1) alert(number_value);
 					txt.innerHTML = number_value;
 					txt.id = "txt_number"+id_value;
 					
@@ -77,6 +81,7 @@ function initiate_cards (rows, columns){
 					else txt_left_val = img_left_val + 1.9;
 					txt_top_val = img_top_val + 5;
 					txt.style = "position:absolute; top:" + txt_top_val + "%; left:" + txt_left_val + "% ;width: 5%; height:auto; ";
+					txt.style.visibility = "hidden";
 					
 					
 				}
