@@ -21,6 +21,7 @@ var cardCounter = 0;
 var img_pressed = [];
 var img_txt_pressed = [];
 var pairsNum = 0;
+var turnsNum = 0;
 
 function pressBackCard(){
 	
@@ -56,9 +57,20 @@ function pressBackCard(){
 				}, 500); // 2 second delay
 			} 
 			else{
+				//Pairs match so increase counter
 				pairsNum++;
 				document.getElementById("pairs_output").innerHTML = pairsNum + " Pairs";
 				cardCounter -= 2
+			}
+			//After 2 cards are pressed that counts as a turn and results in the turn counter incrementing
+			turnsNum++;
+			document.getElementById("turn_output").innerHTML = turnsNum + " Turns";
+			
+			//Win Condition of matching all of the pairs
+			if(pairsNum == (rows*columns/2)){
+				document.getElementById("message").innerHTML = "Congrats you did it!";
+				clearInterval(timer);
+				start_pause_resume_btn.innerHTML = "Start";
 			}
 		}
 	}
