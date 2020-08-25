@@ -9,23 +9,22 @@ var default_number_state;
 function show_hide_numbers() {
 	
 	
-	//If the toggle is changed to checked show all numbers
+	//If the toggle is changed to checked show all numbers by changing the opacity of the back of card images
 	if(this.checked){
 		for(var number_row = 0; number_row < rows; number_row++){
 			for(var number_column = 0; number_column < columns; number_column++){
 				id_value = number_row*columns + number_column;
-				document.getElementById("txt_number"+id_value).style.visibility = "visible";
+				document.getElementById("back_card"+id_value).style.opacity = 0.5;
 			}
 		}
 	}
 	
-	//If the toggle is changed to unchecked, set number visibility to default values
+	//If the toggle is changed to unchecked, set opacity to default values
 	else if(this.checked == false){
 		for(var number_row = 0; number_row < rows; number_row++){
 			for(var number_column = 0; number_column < columns; number_column++){
 				id_value = number_row*columns + number_column;
-				default_number_state = document.getElementById("front_card"+id_value).style.visibility;
-				document.getElementById("txt_number"+id_value).style.visibility = default_number_state;
+				document.getElementById("back_card"+id_value).style.opacity = 1;
 			}
 		}	
 	}

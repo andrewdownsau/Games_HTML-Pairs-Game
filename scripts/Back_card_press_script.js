@@ -5,15 +5,23 @@
 //Create the onclick event listeners for the back card images
 var card_pressed = [];
 
-function generateCardPressListeners(){
+function generateCardDefaults(){
 	for(var listener_row = 0; listener_row < rows; listener_row++){
 		for(var listener_column = 0; listener_column < columns; listener_column++){
 			id_value = listener_row*columns + listener_column;
+			
+			//Set back card press event listeners
 			card_pressed[id_value] = document.getElementById("back_card"+id_value);
 			card_pressed[id_value].addEventListener("click", pressBackCard);
+			
+			//Set visibility of front cards after generating back cards
+			document.getElementById("front_card"+id_value).style.visibility = "visible";
+			document.getElementById("txt_number"+id_value).style.visibility = "visible";
 		}
 	}
 }
+
+
 
 //Variables for the pressBackCard function
 var firstCardNumber, secondCardNumber;
@@ -28,12 +36,11 @@ function pressBackCard(){
 	//Conditions of card back press as long as no more than two are pressed at once
 	if(cardCounter < 2){
 		id_val = this.id.substring(9,12);
-		img_pressed[cardCounter] = document.getElementById("front_card"+id_val)
+		img_pressed[cardCounter] = document.getElementById("back_card"+id_val)
 		img_txt_pressed[cardCounter] = document.getElementById("txt_number"+id_val)
 		
-		//Change the card to front facing and number visible
-		img_pressed[cardCounter].style.visibility = "visible";
-		img_txt_pressed[cardCounter].style.visibility = "visible";
+		//Change the back of card to hidden to expose front underneath
+		img_pressed[cardCounter].style.visibility = "hidden";
 		
 		//Grab first number to match against second
 		if(cardCounter == 0) {
@@ -50,10 +57,8 @@ function pressBackCard(){
 			//If the cards do not match, hide both cards after a 2 second delay
 			if(firstCardNumber != secondCardNumber){
 				setTimeout(function(){
-					img_pressed[0].style.visibility = "hidden";
-					img_txt_pressed[0].style.visibility = "hidden";
-					img_pressed[1].style.visibility = "hidden";
-					img_txt_pressed[1].style.visibility = "hidden";
+					img_pressed[0].style.visibility = "visible";
+					img_pressed[1].style.visibility = "visible";
 					cardCounter -= 2;
 				}, 500); // 2 second delay
 			} 

@@ -43,12 +43,11 @@ function pressMainButton(){
 					id_value = faded_row*columns + faded_column;
 					
 					//Archive current visibility states so that resume brings game to original position
-					paired_card_visbility[id_value] = document.getElementById("front_card"+id_value).style.visibility;
-					paired_card_number_visbility[id_value] = document.getElementById("txt_number"+id_value).style.visibility;
+					paired_card_visbility[id_value] = document.getElementById("back_card"+id_value).style.visibility;
 					
 					//Makes only the back of cards visible (number toggle is disabled)
-					document.getElementById("front_card"+id_value).style.visibility = "hidden";
-					document.getElementById("txt_number"+id_value).style.visibility = "hidden";
+					document.getElementById("back_card"+id_value).style.opacity = 1;
+					document.getElementById("back_card"+id_value).style.visibility = "visible";
 					number_toggle.disabled = true;
 			}
 		}
@@ -70,8 +69,8 @@ function pressMainButton(){
 					id_value = faded_row*columns + faded_column;
 					
 					//Matches the archived visibility values and assigns them to the corresponding paired cards
-					document.getElementById("front_card"+id_value).style.visibility = paired_card_visbility[id_value];
-					document.getElementById("txt_number"+id_value).style.visibility = paired_card_number_visbility[id_value];
+					document.getElementById("back_card"+id_value).style.visibility = paired_card_visbility[id_value];
+					if(number_toggle.checked) document.getElementById("back_card"+id_value).style.opacity = 0.5;
 					
 					//Number toggle can again be used now the game is active
 					number_toggle.disabled = false;
@@ -100,7 +99,7 @@ function initiateGame(){
 	
 	//Start button triggers cards to be generated on game table
 	initiate_cards();
-	generateCardPressListeners();
+	setTimeout(generateCardDefaults, 200);
 
 	//Game can be reset and numbers can be toggled whenever active
 	reset_btn.disabled = false;

@@ -39,7 +39,7 @@ function initiate_cards(){
 	
 	
 	//Card Image and number assignment Generator
-	for(var front_back = 0; front_back < 2; front_back++){
+	for(var front_back = 0; front_back < 3; front_back++){
 		
 		for(var row = 0; row < rows; row++){
 			for(var column = 0; column < columns; column++){
@@ -48,32 +48,11 @@ function initiate_cards(){
 				//Set image variables of cards depending on position on table
 				img_left_val = 10 + (img_width+1)*column;
 				img_top_val = 7.5 + (img_height+1)*row;
+
 				
-				
-				
-				
-				
-				//Conditions for back of card image
+				//Generate front of card first so it's under back
 				if(front_back == 0){
 					
-					//Create the image instances for back card image
-					back_card_img[id_value] = document.createElement('img');
-					back_card_img[id_value].style = "position:absolute; top: " + img_top_val + "%; left: " + img_left_val + "% ;width: " + img_width + "%; height:auto; max-width:100px; max-height:200px;";
-					
-					back_card_img[id_value].src = "images/card_back.svg";
-					back_card_img[id_value].id = "back_card"+id_value;
-					back_card_img[id_value].style.cursor = "pointer";
-					//back_card_img.onclick = pressBackCard;
-					//back_card_img.style.visibility = "hidden";
-					
-					
-					//Add card image to the table area div
-					document.getElementById('table_image_div').insertBefore(back_card_img[id_value],null);
-				}
-				
-				
-				//Conditions for front of card image
-				else if(front_back == 1){
 					//Create the image and text instances for front and back card image
 					front_card_img[id_value] = document.createElement('img');
 					front_card_text[id_value] = document.createElement('span'); //Will contain the number to match the pairs
@@ -103,6 +82,33 @@ function initiate_cards(){
 					
 					//Add card text to the table area div after images
 					document.getElementById('table_image_div').insertBefore(front_card_text[id_value],null);
+				}
+				
+				
+				//Generate back of card so it is covering front
+				else if(front_back == 1){
+					//Create the image instances for back card image
+					back_card_img[id_value] = document.createElement('img');
+					back_card_img[id_value].style = "position:absolute; top: " + img_top_val + "%; left: " + img_left_val + "% ;width: " + img_width + "%; height:auto; max-width:100px; max-height:200px;";
+					
+					back_card_img[id_value].src = "images/card_back.svg";
+					back_card_img[id_value].id = "back_card"+id_value;
+					back_card_img[id_value].style.cursor = "pointer";
+					//back_card_img[id_value].style.visibility = "hidden";
+					
+					
+					//Add card image to the table area div
+					document.getElementById('table_image_div').insertBefore(back_card_img[id_value],null);
+					
+				}
+				
+				
+				//Make front of card values visible so can be seen when cards are pressed
+				else if(front_back == 2){
+					//Allow front of card to be visible under back of card (this was hidden during generation to avoid seeing it on load)
+					//front_card_img[id_value].style.visibility = "visible";
+					//front_card_text[id_value].style.visibility = "visible";
+					
 				}
 				
 			}
