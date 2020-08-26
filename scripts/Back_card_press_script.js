@@ -65,12 +65,12 @@ function pressBackCard(){
 			else{
 				//Pairs match so increase counter
 				pairsNum++;
-				document.getElementById("pairs_output").innerHTML = pairsNum + " Pairs";
+				document.getElementById("pairs_output").innerHTML = pairsNum;
 				cardCounter -= 2
 			}
 			//After 2 cards are pressed that counts as a turn and results in the turn counter incrementing
 			turnsNum++;
-			document.getElementById("turn_output").innerHTML = turnsNum + " Turns";
+			document.getElementById("turn_output").innerHTML = turnsNum;
 			
 			//Win Condition of matching all of the pairs
 			if(pairsNum == (rows*columns/2)){

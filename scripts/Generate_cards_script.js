@@ -11,6 +11,9 @@ var back_card_img = [];
 var front_card_img = [];
 var front_card_text = [];
 
+//Bool variable for generate state
+var cards_generated = 0; //0 for false, 1 for true
+
 function initiate_cards(){
 	
 	//Image variables of cards that remain constant
@@ -39,7 +42,7 @@ function initiate_cards(){
 	
 	
 	//Card Image and number assignment Generator
-	for(var front_back = 0; front_back < 3; front_back++){
+	for(var front_back = 0; front_back < 2; front_back++){
 		
 		for(var row = 0; row < rows; row++){
 			for(var column = 0; column < columns; column++){
@@ -102,16 +105,10 @@ function initiate_cards(){
 					
 				}
 				
-				
-				//Make front of card values visible so can be seen when cards are pressed
-				else if(front_back == 2){
-					//Allow front of card to be visible under back of card (this was hidden during generation to avoid seeing it on load)
-					//front_card_img[id_value].style.visibility = "visible";
-					//front_card_text[id_value].style.visibility = "visible";
-					
-				}
-				
 			}
 		}
 	}
+
+	//Cards have been generated so change status bool variable
+	cards_generated = 1; //0 for false, 1 for true
 }

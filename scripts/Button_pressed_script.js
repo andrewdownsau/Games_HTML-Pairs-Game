@@ -84,6 +84,7 @@ function pressMainButton(){
 	
 }
 
+//Reset Button Functionality
 function pressSecondaryButton(){
 	clearGame();
 	initiateGame();
@@ -127,11 +128,12 @@ function clearGame(){
 	}
 	
 	//Clear previous messages and counters (if win condition or reset pressed)
-	output=0;
-	document.getElementById("timer_output").innerHTML = output + " seconds";
+	second_output = 0;
+	minute_output = 0;
+	document.getElementById("timer_output").innerHTML = "00:00";
 	document.getElementById("message").innerHTML = "";
 	pairsNum=0;
-	document.getElementById("pairs_output").innerHTML = pairsNum + " Pairs";
+	document.getElementById("pairs_output").innerHTML = pairsNum;
 	turnsNum=0;
-	document.getElementById("turn_output").innerHTML = turnsNum + " Turns";
+	document.getElementById("turn_output").innerHTML = turnsNum;
 }

@@ -1,62 +1,63 @@
 <!DOCTYPE html>
 <html lang="en-US">
-	<!-- This is a simple html web page used to go over the various elements of html and how they are correctly implimented in a standard browser -->
-	
-	<head>
-		<meta charset="UTF-8">
-		<title>HTML Pairs Game</title> <!-- Title indicated on page tab in browser -->
-		<link rel="stylesheet" href="styles.css">
-		<link rel="icon" href="images/card_back.svg">
-	</head>
-	
-	<body >
-		<!-- WebPage Title -->
-		<div id="title_area">
-			<h1> HTML Pairs Game Example </h1>
-		</div>
-		
-		<!-- Brief description of aims and specifications -->
-		<div id="description_area">
-			<hr>
-			<p>This html page is meant as a platform to test the image and picture tags as well as their associated attributes. This is an emulation of a basic pairs game where the user will have to match the pairs of the cards generated on the table and a timer will be used to mark how long it takes to solve as well as a counter to determine how many turns were required to solve it.</p>
-			<hr>
-		</div>
-		
-		<!-- Operational buttons and number toggle -->
-		<div id="button_toggle_area">
-			<button id="start_pause_btn">Start</button>
-			<button id="reset_btn" disabled>Reset</button>
-			<label for="number_toggle">Show Numbers</label> 
-			<input type="checkbox" id="number_toggle" disabled>
-		</div><br>
-		
-		<!-- Game Board Area -->
-		<div id="table_image_div">
-			<img id="table_image" src="images/table.svg" alt="Pairs Table Image">
-		</div>
-		
-		<!-- Timer and game counters -->
-		<div id="timer_turn_counter_div">
-			<ul>
-				<li>Timer: <span id="timer_output">0 seconds</span></li>
-				<li>Turn Counter: <span id="turn_output">0 Turns</span></li>
-				<li>Pairs Counter: <span id="pairs_output">0 Pairs</span></li>
-			</ul>
-		</div><br>
-		
-		<!-- Message area for game sucess output and scripting tests -->
-		<div id="message_div">
-			<span id="message"></span>
-		</div>
-		
-		
-		<script src="scripts/Generate_cards_script.js"></script>
-		<script src="scripts/Resizing_format_script.js"></script>
-		<script src="scripts/Game_timer_script.js"></script>
-		<script src="scripts/Button_pressed_script.js"></script>
-		<script src="scripts/Back_card_press_script.js"></script>
-		<script src="scripts/Toggle_numbers_shown_script.js"></script>
-		
-	</body>
-	
+<!-- This is a simple html web page used to go over the various elements of html and how they are correctly implimented in a standard browser -->
+
+<head>
+	<meta charset="UTF-8">
+	<title>HTML Pairs Game</title> <!-- Title indicated on page tab in browser -->
+	<link rel="stylesheet" href="styles.css">
+	<link rel="icon" href="images/card_back.svg">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<!-- WebPage Title -->
+	<div id="title_area">
+		<h1> HTML Pairs Game</h1>
+	</div>
+
+	<!-- Brief description of aims and specifications -->
+	<div id="description_area">
+		<hr>
+		<p>This web page is meant as a platform to test and play around with various components of html, css and
+			javascript. This basic pairs game allowers users to match the pairs of the
+			cards generated on the table.</p>
+		<hr>
+	</div>
+
+	<!-- Operational buttons and number toggle -->
+	<div id="button_toggle_area">
+		<button id="start_pause_btn">Start</button>
+		<button id="reset_btn" disabled>Reset</button>
+		<label for="number_toggle">Show Numbers</label>
+		<input type="checkbox" id="number_toggle" disabled>
+	</div><br>
+
+	<!-- Game Board Area -->
+	<div id="table_image_div">
+		<img id="table_image" src="images/table.svg" alt="Pairs Table Image">
+	</div>
+
+	<!-- Timer and game counters -->
+	<div id="timer_turn_counter_div">
+		<section class="metric">Game Timer: <span id="timer_output">00:00</span></section>
+		<section class="metric">Pairs Flipped: <span id="turn_output">0</span></section>
+		<section class="metric">Pairs Matched: <span id="pairs_output">0</span>/25</section>
+	</div><br>
+
+	<!-- Message area for game sucess output and scripting tests -->
+	<div id="message_div">
+		<span id="message"></span>
+	</div>
+
+
+	<script src="scripts/Generate_cards_script.js"></script>
+	<script src="scripts/Resizing_format_script.js"></script>
+	<script src="scripts/Game_timer_script.js"></script>
+	<script src="scripts/Button_pressed_script.js"></script>
+	<script src="scripts/Back_card_press_script.js"></script>
+	<script src="scripts/Toggle_numbers_shown_script.js"></script>
+
+</body>
+
 </html>
