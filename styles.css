@@ -54,12 +54,10 @@ button {
 #timer_turn_counter_div {
   font-size: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .metric {
-  width: 30%;
-  margin: 10px;
   text-align: center;
 }
 
