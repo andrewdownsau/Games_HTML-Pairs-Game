@@ -7,15 +7,19 @@
 #title_area h1 {
 	display:inline-block; 
 	padding:4px; 
-	border: 2px solid darkblue; 
+	border: 2px solid #EB862E;
 	border-radius: 4px;
-	color: darkblue;
+	color: #EB862E;
 }
 
 
 /* Description Area */
 #description_area {
 	margin: 0px 10%;
+}
+#description_area h4 {
+	text-align: center;
+	color: #EB4D2E;
 }
 
 
