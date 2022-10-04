@@ -25,6 +25,7 @@ function initiate_cards(){
 	
 	//Image variables declarations
 	var img_left_val, img_top_val, id_value;
+	var img_table_width = document.getElementById("table_image").offsetWidth;
 	
 	
 	//Create the random matrix of values depending on the number of rows and columns
@@ -73,11 +74,13 @@ function initiate_cards(){
 					front_card_text[id_value].id = "txt_number"+id_value;
 					
 					//Set text variables of cards depending on position on table and number of digits
-					if(number_value < 10) txt_left_val = img_left_val + 2.5;
+					if(number_value < 10) txt_left_val = img_left_val + 2.6;
 					else txt_left_val = img_left_val + 1.9;
 					txt_top_val = img_top_val + 5;
 					front_card_text[id_value].style = "position:absolute; top:" + txt_top_val + "%; left:" + txt_left_val + "% ;width: 5%; height:auto; ";
+					front_card_text[id_value].style.cursor = "default";
 					front_card_text[id_value].style.visibility = "hidden";
+					front_card_text[id_value].style.fontSize = img_table_width >= 1400 ? "42px" : "3vw";
 					
 					
 					//Add card image to the table area div
